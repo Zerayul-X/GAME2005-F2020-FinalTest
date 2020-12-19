@@ -16,6 +16,10 @@ public class PlayerBehaviour : MonoBehaviour
     public float speed;
     public bool isGrounded;
 
+    public bool canMoveRight;
+    public bool canMoveLeft;
+    public bool canMoveForward;
+    public bool canMoveBack;
 
     public RigidBody3D body;
     public CubeBehaviour cube;
@@ -23,12 +27,16 @@ public class PlayerBehaviour : MonoBehaviour
 
     void start()
     {
-
+        canMoveRight = true;
+        canMoveLeft = true;
+        canMoveForward = true;
+        canMoveBack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        start();
         _Fire();
         _Move();
     }
@@ -40,25 +48,37 @@ public class PlayerBehaviour : MonoBehaviour
             if (Input.GetAxisRaw("Horizontal") > 0.0f)
             {
                 // move right
-                body.velocity = playerCam.transform.right * speed * Time.deltaTime;
+                if (canMoveRight)
+                {
+                    body.velocity = playerCam.transform.right * speed * Time.deltaTime;
+                }
             }
 
             if (Input.GetAxisRaw("Horizontal") < 0.0f)
             {
                 // move left
-                body.velocity = -playerCam.transform.right * speed * Time.deltaTime;
+                if (canMoveLeft)
+                {
+                    body.velocity = -playerCam.transform.right * speed * Time.deltaTime;
+                }
             }
 
             if (Input.GetAxisRaw("Vertical") > 0.0f)
             {
-                // move forward
-                body.velocity = playerCam.transform.forward * speed * Time.deltaTime;
+                // move forward 
+                if (canMoveForward)
+                {
+                    body.velocity = playerCam.transform.forward * speed * Time.deltaTime;
+                }
             }
 
             if (Input.GetAxisRaw("Vertical") < 0.0f) 
             {
                 // move Back
-                body.velocity = -playerCam.transform.forward * speed * Time.deltaTime;
+                if (canMoveBack)
+                {
+                    body.velocity = -playerCam.transform.forward * speed * Time.deltaTime;
+                }
             }
 
             body.velocity = Vector3.Lerp(body.velocity, Vector3.zero, 0.9f);

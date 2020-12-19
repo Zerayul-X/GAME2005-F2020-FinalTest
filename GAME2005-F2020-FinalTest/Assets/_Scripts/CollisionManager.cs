@@ -96,7 +96,7 @@ public class CollisionManager : MonoBehaviour
 
             s.penetration = penetration;
             s.collisionNormal = face;
-            //s.isColliding = true;
+            s.isColliding = true;
 
             
             Reflect(s);
