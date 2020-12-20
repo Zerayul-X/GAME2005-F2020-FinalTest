@@ -14,6 +14,11 @@ public class BulletBehaviour : MonoBehaviour
     public Vector3 collisionNormal;
     public float penetration;
 
+    public Vector3 max;
+    public Vector3 min;
+    public Bounds bounds;
+    public List<Contact> contacts;
+
     public BulletManager bulletManager;
 
     // Start is called before the first frame update
@@ -29,6 +34,8 @@ public class BulletBehaviour : MonoBehaviour
     {
         _Move();
         _CheckBounds();
+        max = Vector3.Scale(bounds.max, transform.localScale) + transform.position;
+        min = Vector3.Scale(bounds.min, transform.localScale) + transform.position;
     }
 
     private void _Move()

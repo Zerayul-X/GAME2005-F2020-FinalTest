@@ -11,6 +11,8 @@ public class Contact : IEquatable<Contact>
     public Vector3 face;
     public float penetration;
 
+   
+
     public Contact(CubeBehaviour cube)
     {
         this.cube = cube;
@@ -65,6 +67,11 @@ public class CubeBehaviour : MonoBehaviour
     public bool isGrounded;
 
 
+    public bool canMoveRight = true;
+    public bool canMoveLeft = true;
+    public bool canMoveForward = true;
+    public bool canMoveBack = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,7 +88,6 @@ public class CubeBehaviour : MonoBehaviour
     {
         max = Vector3.Scale(bounds.max, transform.localScale) + transform.position;
         min = Vector3.Scale(bounds.min, transform.localScale) + transform.position;
-
     }
 
     private void OnDrawGizmos()

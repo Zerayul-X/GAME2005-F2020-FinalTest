@@ -7,7 +7,8 @@ using UnityEngine;
 public class CollisionManager : MonoBehaviour
 {
     public CubeBehaviour[] cubes;
-    public BulletBehaviour[] spheres;
+    //public BulletBehaviour[] sphere;
+    public BulletBehaviour[] bullets;
 
     private static Vector3[] faces;
 
@@ -27,7 +28,8 @@ public class CollisionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spheres = FindObjectsOfType<BulletBehaviour>();
+        bullets = FindObjectsOfType<BulletBehaviour>();
+        //bullets = FindObjectsOfType<CubeBehaviour>();
 
         // check each AABB with every other AABB in the scene
         for (int i = 0; i < cubes.Length; i++)
@@ -42,42 +44,37 @@ public class CollisionManager : MonoBehaviour
         }
 
         // Check each sphere against each AABB in the scene
-        foreach (var sphere in spheres)
+        //foreach (var sphere in sphere)
+        foreach (var bullet in bullets)
         {
             foreach (var cube in cubes)
             {
                 if (cube.name != "Player")
                 {
-                    CheckSphereAABB(sphere, cube);
-                }
-                
+                    CheckBulletAABB(bullet, cube);
+                }       
             }
         }
-
-
     }
 
-    public static void CheckSphereAABB(BulletBehaviour s, CubeBehaviour b)
+    public static void CheckBulletAABB(BulletBehaviour s, CubeBehaviour b)
     {
-        // get box closest point to sphere center by clamping
-        var x = Mathf.Max(b.min.x, Mathf.Min(s.transform.position.x, b.max.x));
-        var y = Mathf.Max(b.min.y, Mathf.Min(s.transform.position.y, b.max.y));
-        var z = Mathf.Max(b.min.z, Mathf.Min(s.transform.position.z, b.max.z));
+        
 
-        var distance = Math.Sqrt((x - s.transform.position.x) * (x - s.transform.position.x) +
-                                 (y - s.transform.position.y) * (y - s.transform.position.y) +
-                                 (z - s.transform.position.z) * (z - s.transform.position.z));
+        Contact contactB = new Contact(b);
 
-        if ((distance < s.radius) && (!s.isColliding))
+        if ((s.min.x <= b.max.x && s.max.x >= b.min.x) &&
+            (s.min.y <= b.max.y && s.max.y >= b.min.y) &&
+            (s.min.z <= b.max.z && s.max.z >= b.min.z))
         {
             // determine the distances between the contact extents
             float[] distances = {
-                (b.max.x - s.transform.position.x),
-                (s.transform.position.x - b.min.x),
-                (b.max.y - s.transform.position.y),
-                (s.transform.position.y - b.min.y),
-                (b.max.z - s.transform.position.z),
-                (s.transform.position.z - b.min.z)
+                (b.max.x - s.min.x),
+                (s.max.x - b.min.x),
+                (b.max.y - s.min.y),
+                (s.max.y - b.min.y),
+                (b.max.z - s.min.z),
+                (s.max.z - b.min.z)
             };
 
             float penetration = float.MaxValue;
@@ -94,16 +91,97 @@ public class CollisionManager : MonoBehaviour
                 }
             }
 
-            s.penetration = penetration;
-            s.collisionNormal = face;
-            s.isColliding = true;
+            // set the contact properties
+            contactB.face = face;
+            contactB.penetration = penetration;
 
-            
-            Reflect(s);
+            // check if contact does not exist
+            if (!s.contacts.Contains(contactB))
+            {
+                // remove any contact that matches the name but not other parameters
+                for (int i = s.contacts.Count - 1; i > -1; i--)
+                {
+                    if (s.contacts[i].cube.name.Equals(contactB.cube.name))
+                    {
+                        s.contacts.RemoveAt(i);
+                    }
+                }
+
+                if (contactB.face == Vector3.down)
+                {
+                    //s.gameObject.GetComponent<RigidBody3D>().Stop();
+                    //s.isGrounded = true;
+                }
+                s.penetration = penetration;
+                s.collisionNormal = face;
+                // add the new contact
+                s.contacts.Add(contactB);
+                s.isColliding = true;
+
+                Reflect(s);
+
+            }
         }
+        else
+        {
+
+            if (s.contacts.Exists(x => x.cube.gameObject.name == b.gameObject.name))
+            {
+                s.contacts.Remove(s.contacts.Find(x => x.cube.gameObject.name.Equals(b.gameObject.name)));
+                s.isColliding = false;
+
+            }
+        }
+        //// get box closest point to sphere center by clamping
+        //var x = Mathf.Max(b.min.x, Mathf.Min(s.transform.position.x, b.max.x));
+        //var y = Mathf.Max(b.min.y, Mathf.Min(s.transform.position.y, b.max.y));
+        //var z = Mathf.Max(b.min.z, Mathf.Min(s.transform.position.z, b.max.z));
+
+        //float penetration = float.MaxValue;
+        //Vector3 face = Vector3.zero;
+
+
+
+        //var distance = Math.Sqrt((x - s.transform.position.x) * (x - s.transform.position.x) +
+        //                         (y - s.transform.position.y) * (y - s.transform.position.y) +
+        //                         (z - s.transform.position.z) * (z - s.transform.position.z));
+
+        //if ((distance < s.radius) && (!s.isColliding))
+        //{
+        //    // determine the distances between the contact extents
+        //    float[] distances = {
+        //        (b.max.x - s.transform.position.x),
+        //        (s.transform.position.x - b.min.x),
+        //        (b.max.y - s.transform.position.y),
+        //        (s.transform.position.y - b.min.y),
+        //        (b.max.z - s.transform.position.z),
+        //        (s.transform.position.z - b.min.z)
+        //    };
+
+        //    float penetration = float.MaxValue;
+        //    Vector3 face = Vector3.zero;
+
+        //    // check each face to see if it is the one that connected
+        //    for (int i = 0; i < 6; i++)
+        //    {
+        //        if (distances[i] < penetration)
+        //        {
+        //            // determine the penetration distance
+        //            penetration = distances[i];
+        //            face = faces[i];
+        //        }
+        //    }
+
+        //    s.penetration = penetration;
+        //    s.collisionNormal = face;
+        //    //s.isColliding = true;
+
+
+        //    Reflect(s);
+        //}
 
     }
-    
+
     // This helper function reflects the bullet when it hits an AABB face
     private static void Reflect(BulletBehaviour s)
     {
@@ -151,6 +229,54 @@ public class CollisionManager : MonoBehaviour
                     // determine the penetration distance
                     penetration = distances[i];
                     face = faces[i];
+                    switch (i)
+                    {
+                        case 1:
+                            //a.canMoveLeft = false;
+                            //b.canMoveLeft = false;
+                            break;
+                        case 3:
+                            a.canMoveRight = false;
+
+
+                            //b.canMoveRight = false;
+                            break;
+                        case 4:
+                            a.canMoveBack = false;
+                           // b.canMoveBack = false;
+                            break;
+                        case 5:
+                            a.canMoveForward = false;
+                            //b.canMoveForward = false;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if (distances[i] > penetration)
+                {
+                    switch (i)
+                    {
+                        case 1:
+                            //a.canMoveLeft = true;
+                            
+                           // b.canMoveLeft = true;
+                            break;
+                        case 3:
+                            a.canMoveRight = true;
+                           // b.canMoveRight = true;
+                            break;
+                        case 4:
+                            a.canMoveBack = true;
+                           // b.canMoveBack = true;
+                            break;
+                        case 5:
+                            a.canMoveForward = true;
+                            //b.canMoveForward = true;
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             
@@ -177,7 +303,6 @@ public class CollisionManager : MonoBehaviour
                     a.isGrounded = true;
                 }
                 
-
                 // add the new contact
                 a.contacts.Add(contactB);
                 a.isColliding = true;
@@ -186,7 +311,6 @@ public class CollisionManager : MonoBehaviour
         }
         else
         {
-
             if (a.contacts.Exists(x => x.cube.gameObject.name == b.gameObject.name))
             {
                 a.contacts.Remove(a.contacts.Find(x => x.cube.gameObject.name.Equals(b.gameObject.name)));

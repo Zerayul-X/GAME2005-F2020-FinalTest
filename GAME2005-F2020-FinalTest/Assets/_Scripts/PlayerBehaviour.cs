@@ -16,27 +16,17 @@ public class PlayerBehaviour : MonoBehaviour
     public float speed;
     public bool isGrounded;
 
-    public bool canMoveRight;
-    public bool canMoveLeft;
-    public bool canMoveForward;
-    public bool canMoveBack;
-
     public RigidBody3D body;
     public CubeBehaviour cube;
     public Camera playerCam;
 
     void start()
     {
-        canMoveRight = true;
-        canMoveLeft = true;
-        canMoveForward = true;
-        canMoveBack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        start();
         _Fire();
         _Move();
     }
@@ -48,7 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
             if (Input.GetAxisRaw("Horizontal") > 0.0f)
             {
                 // move right
-                if (canMoveRight)
+                if (cube.canMoveRight)
                 {
                     body.velocity = playerCam.transform.right * speed * Time.deltaTime;
                 }
@@ -57,7 +47,7 @@ public class PlayerBehaviour : MonoBehaviour
             if (Input.GetAxisRaw("Horizontal") < 0.0f)
             {
                 // move left
-                if (canMoveLeft)
+                if (cube.canMoveLeft)
                 {
                     body.velocity = -playerCam.transform.right * speed * Time.deltaTime;
                 }
@@ -66,7 +56,7 @@ public class PlayerBehaviour : MonoBehaviour
             if (Input.GetAxisRaw("Vertical") > 0.0f)
             {
                 // move forward 
-                if (canMoveForward)
+                if (cube.canMoveForward)
                 {
                     body.velocity = playerCam.transform.forward * speed * Time.deltaTime;
                 }
@@ -75,7 +65,7 @@ public class PlayerBehaviour : MonoBehaviour
             if (Input.GetAxisRaw("Vertical") < 0.0f) 
             {
                 // move Back
-                if (canMoveBack)
+                if (cube.canMoveBack)
                 {
                     body.velocity = -playerCam.transform.forward * speed * Time.deltaTime;
                 }

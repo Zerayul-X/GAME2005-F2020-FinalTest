@@ -18,10 +18,12 @@ public class RigidBody3D : MonoBehaviour
     public BodyType bodyType;
     public float timer;
     public bool isFalling;
-    public bool isPushing;
     [Header("Attributes")]
     public Vector3 velocity;
     public Vector3 acceleration;
+
+    public bool ifPushing = false;
+
     private float gravity;
 
     // Start is called before the first frame update
@@ -34,7 +36,6 @@ public class RigidBody3D : MonoBehaviour
         if (bodyType == BodyType.DYNAMIC)
         {
             isFalling = true;
-            isPushing = true;
         }
     }
 
@@ -58,8 +59,7 @@ public class RigidBody3D : MonoBehaviour
                     transform.position += velocity;
                 }
             }
-
-            if (isPushing)
+            if (ifPushing)
             {
 
             }

@@ -166,7 +166,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &451180817
 GameObject:
@@ -210,6 +210,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &451180819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,9 +231,9 @@ MonoBehaviour:
   bodyType: 0
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!23 &451180820
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -291,7 +295,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &485822233
 GameObject:
@@ -366,6 +370,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!23 &526557354
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -427,7 +435,7 @@ Transform:
   m_LocalScale: {x: 20, y: 0.1, z: 20}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &526557358
 MonoBehaviour:
@@ -446,9 +454,9 @@ MonoBehaviour:
   bodyType: 0
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!1 &536637367
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +499,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &536637369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,9 +520,9 @@ MonoBehaviour:
   bodyType: 0
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!23 &536637370
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -572,7 +584,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &559188888
 GameObject:
@@ -598,11 +610,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559188888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.036062, y: -0.42856568, z: -3.1356082}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &579480852
 GameObject:
@@ -666,6 +678,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &579480856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,9 +699,9 @@ MonoBehaviour:
   bodyType: 1
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!23 &579480857
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -772,10 +788,6 @@ MonoBehaviour:
   bulletManager: {fileID: 403008322}
   speed: 100
   isGrounded: 0
-  canMoveRight: 0
-  canMoveLeft: 0
-  canMoveForward: 0
-  canMoveBack: 0
   body: {fileID: 579480856}
   cube: {fileID: 579480855}
   playerCam: {fileID: 580202292}
@@ -792,7 +804,7 @@ Transform:
   m_Children:
   - {fileID: 485822234}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &579711286
 Transform:
@@ -965,6 +977,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &613454537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,9 +998,9 @@ MonoBehaviour:
   bodyType: 1
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!1 &681930395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,6 +1073,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &700468848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,9 +1094,9 @@ MonoBehaviour:
   bodyType: 0
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!23 &700468849
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1138,7 +1158,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -1313,7 +1333,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &893925097
 MonoBehaviour:
@@ -1337,6 +1357,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &893925098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1354,9 +1378,9 @@ MonoBehaviour:
   bodyType: 0
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!1 &1031056705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1423,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &1031056707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1416,9 +1444,9 @@ MonoBehaviour:
   bodyType: 0
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!23 &1031056708
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1480,7 +1508,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1044084123
 GameObject:
@@ -1524,6 +1552,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &1044084125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1541,9 +1573,9 @@ MonoBehaviour:
   bodyType: 0
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!23 &1044084126
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1605,7 +1637,7 @@ Transform:
   m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1052724107
 GameObject:
@@ -1649,6 +1681,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &1052724109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1666,9 +1702,9 @@ MonoBehaviour:
   bodyType: 0
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!23 &1052724110
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1730,7 +1766,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1101564116
 GameObject:
@@ -1774,6 +1810,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &1101564118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1791,9 +1831,9 @@ MonoBehaviour:
   bodyType: 1
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!23 &1101564119
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1981,6 +2021,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &1170046216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1998,9 +2042,9 @@ MonoBehaviour:
   bodyType: 1
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!23 &1170046217
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2181,6 +2225,10 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   isGrounded: 0
+  canMoveRight: 1
+  canMoveLeft: 1
+  canMoveForward: 1
+  canMoveBack: 1
 --- !u!114 &1692920644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2198,9 +2246,9 @@ MonoBehaviour:
   bodyType: 0
   timer: 0
   isFalling: 0
-  isPushing: 0
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  ifPushing: 0
 --- !u!23 &1692920645
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2262,7 +2310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1946791117
 GameObject:
@@ -2275,6 +2323,7 @@ GameObject:
   - component: {fileID: 1946791120}
   - component: {fileID: 1946791119}
   - component: {fileID: 1946791118}
+  - component: {fileID: 1946791121}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2328,8 +2377,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1946791121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946791117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea57b04c48bf7d40b478061981d2a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1957707760
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,7 +2421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubes: []
-  spheres: []
+  bullets: []
 --- !u!4 &1957707762
 Transform:
   m_ObjectHideFlags: 0
@@ -2373,5 +2434,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
